@@ -73,4 +73,4 @@
         type: 'submit'
         className: 'btn btn-primary'
         disabled: !@valid()
-        'Create record'
+        '寫下紀錄'
