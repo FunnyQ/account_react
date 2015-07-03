@@ -16,7 +16,8 @@
     $.ajax
       method: 'POST'
       url: '/records'
-      data: record: @state
+      data:
+        record: @state
       dataType: 'JSON'
       success: (data) =>
         @props.handleNewRecord data
