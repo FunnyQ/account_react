@@ -13,10 +13,19 @@
 
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { record: @state }, (data) =>
-      @props.handleNewRecord data
-      @setState @getInitialState()
-    , 'JSON'
+    $.ajax
+      method: 'POST'
+      url: '/records'
+      data: record: @state
+      dataType: 'JSON'
+      success: (data) =>
+        @props.handleNewRecord data
+        @setState @getInitialState()
+
+    # $.post '', { record: @state }, (data) =>
+    #   @props.handleNewRecord data
+    #   @setState @getInitialState()
+    # , 'JSON'
 
   render: ->
     React.DOM.form
