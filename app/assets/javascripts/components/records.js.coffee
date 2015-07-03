@@ -25,16 +25,19 @@
       className: 'records'
       React.DOM.h2
         className: 'title'
-        'Records'
+        '記帳簿'
 
       React.DOM.div
         className: 'row'
-        React.createElement AmountBox, type: 'success', amount: @credits(), text: 'Credit'
-        React.createElement AmountBox, type: 'danger', amount: @debits(), text: 'Debit'
-        React.createElement AmountBox, type: 'info', amount: @balance(), text: 'Balance'
+        React.createElement AmountBox, type: 'success', amount: @credits(), text: '總收入'
+        React.createElement AmountBox, type: 'danger', amount: @debits(), text: '總支出'
+        React.createElement AmountBox, type: 'info', amount: @balance(), text: '結餘'
+
+      React.DOM.hr null
 
       # 表單
       React.createElement RecordForm, handleNewRecord: @addRecord
+
       React.DOM.hr null
 
       # 所有 records
@@ -42,10 +45,10 @@
         className: 'table table-bordered'
         React.DOM.thead null,
           React.DOM.tr null,
-            React.DOM.th null, 'Date'
-            React.DOM.th null, 'Title'
-            React.DOM.th null, 'Amount'
-            React.DOM.th null, 'Actions'
+            React.DOM.th null, '日期'
+            React.DOM.th null, '標題'
+            React.DOM.th null, '金額'
+            React.DOM.th null, '選項'
         React.DOM.tbody null,
           for record in @state.records
             React.createElement Record, key: record.id, record: record
