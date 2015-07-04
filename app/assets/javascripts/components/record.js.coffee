@@ -32,51 +32,31 @@
         @props.handleDeleteRecord @props.record
 
   recordRow: ->
-    React.DOM.tr null,
-      React.DOM.td null, @props.record.date
-      React.DOM.td null, @props.record.title
-      React.DOM.td null, amountFormat(@props.record.amount)
-      React.DOM.td
-        className: 'row-options',
-        React.DOM.a
-          className: 'btn btn-default btn-xs'
-          onClick: @handleToggle
-          '編輯'
-        React.DOM.a
-          className: 'btn btn-danger btn-xs'
-          onClick: @handleDelete
-          '刪除'
-
+    <tr>
+      <td>{@props.record.date}</td>
+      <td>{@props.record.title}</td>
+      <td>{amountFormat(@props.record.amount)}</td>
+      <td className="row-options">
+        <a className="btn btn-default btn-xs" onClick={@handleToggle}>編輯</a>
+        <a className="btn btn-danger btn-xs" onClick={@handleDelete}>刪除</a>
+      </td>
+    </tr>
   recordForm: ->
-    React.DOM.tr null,
-      React.DOM.td null,
-        React.DOM.input
-          className: 'form-control'
-          type: 'text'
-          defaultValue: @props.record.date
-          ref: 'date'
-      React.DOM.td null,
-        React.DOM.input
-          className: 'form-control'
-          type: 'text'
-          defaultValue: @props.record.title
-          ref: 'title'
-      React.DOM.td null,
-        React.DOM.input
-          className: 'form-control'
-          type: 'number'
-          defaultValue: @props.record.amount
-          ref: 'amount'
-      React.DOM.td
-        className: 'row-options'
-        React.DOM.a
-          className: 'btn btn-primary'
-          onClick: @handleEdit
-          '更新'
-        React.DOM.a
-          className: 'btn btn-default'
-          onClick: @handleToggle
-          '取消'
+    <tr>
+      <td>
+        <input className="form-control" type="text" defaultValue={@props.record.date} ref="date" />
+      </td>
+      <td>
+        <input className="form-control" type="text" defaultValue={@props.record.title} ref="title" />
+      </td>
+      <td>
+        <input className="form-control" type="text" defaultValue={@props.record.amount} ref="amount" />
+      </td>
+      <td className="row-options">
+        <a className="btn btn-primary" onClick={@handleEdit}>更新</a>
+        <a className="btn btn-default" onClick={@handleToggle}>取消</a>
+      </td>
+    </tr>
 
   render: ->
     if @state.edit

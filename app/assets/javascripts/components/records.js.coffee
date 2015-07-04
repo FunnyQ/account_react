@@ -41,8 +41,8 @@
       {# 資訊面板}
       <div className="row">
         <AmountBox type="success" amount={@credits()} text="總收入"></AmountBox>
-        <AmountBox type="success" amount={@debits()} text="總支出"></AmountBox>
-        <AmountBox type="success" amount={@balance()} text="結餘"></AmountBox>
+        <AmountBox type="danger" amount={@debits()} text="總支出"></AmountBox>
+        <AmountBox type="info" amount={@balance()} text="結餘"></AmountBox>
       </div>
 
       <hr />
