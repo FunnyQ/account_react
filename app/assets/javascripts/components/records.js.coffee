@@ -1,4 +1,5 @@
 @Records = React.createClass
+  displayName: 'Records'
 
   getInitialState: ->
     records: @props.data
@@ -34,34 +35,38 @@
     @replaceState records: records
 
   render: ->
-    React.DOM.div
-      className: 'records'
-      React.DOM.h2
-        className: 'title'
-        '記帳簿'
+    <div className="records">
+      <h2 className="title">記帳簿</h2>
 
-      React.DOM.div
-        className: 'row'
-        React.createElement AmountBox, type: 'success', amount: @credits(), text: '總收入'
-        React.createElement AmountBox, type: 'danger', amount: @debits(), text: '總支出'
-        React.createElement AmountBox, type: 'info', amount: @balance(), text: '結餘'
+      {# 資訊面板}
+      <div className="row">
+        <AmountBox type="success" amount={@credits()} text="總收入"></AmountBox>
+        <AmountBox type="success" amount={@debits()} text="總支出"></AmountBox>
+        <AmountBox type="success" amount={@balance()} text="結餘"></AmountBox>
+      </div>
 
-      React.DOM.hr null
+      <hr />
 
-      # 表單
-      React.createElement RecordForm, handleNewRecord: @addRecord
+      {# 表單}
+      <RecordForm handleNewRecord={@addRecord} ></RecordForm>
 
-      React.DOM.hr null
+      <hr />
 
-      # 所有 records
-      React.DOM.table
-        className: 'table table-bordered'
-        React.DOM.thead null,
-          React.DOM.tr null,
-            React.DOM.th null, '日期'
-            React.DOM.th null, '標題'
-            React.DOM.th null, '金額'
-            React.DOM.th null, '選項'
-        React.DOM.tbody null,
-          for record in @state.records
-            React.createElement Record, key: record.id, record: record, handleDeleteRecord: @deleteRecord, handleEditRecord: @updateRecord
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>標題</th>
+            <th>金額</th>
+            <th>選項</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            # 迴圈之類的要放在大括號中，讓 coffeescript 先生效後再於 block 內插入 JSX 語法
+            for record in @state.records
+              <Record key={record.id} record={record} handleDeleteRecord={@deleteRecord} handleEditRecord={@updateRecord} ></Record>
+          }
+        </tbody>
+      </table>
+    </div>

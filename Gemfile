@@ -48,3 +48,4 @@ end
 gem 'bootstrap-sass'
 gem 'react-rails', '~> 1.0'
 gem 'awesome_rails_console'
+gem 'sprockets-coffee-react'
